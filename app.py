@@ -2,7 +2,7 @@ from flask import Flask
 from redis import Redis
 
 app = Flask(__name__)
-redisDB = Redis(host='redis-db', port=6380)
+redisDB = Redis(host=os.getenv('RedisHOST'), port=os.getenv('RedisPORT'))
 visitCount = 0
 
 @app.route('/')
