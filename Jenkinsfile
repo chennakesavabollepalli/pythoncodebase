@@ -1,14 +1,14 @@
 pipeline {
   agent any 
   environment { 
-    GIT_TAG = ${env.TAG_NAME}
+    GIT_TAG = "${env.TAG_NAME}"
   }
   stages { 
     stage {
       steps {
         script {
           sh """
-             echo $GIT_TAG
+             echo ${GIT_TAG}
           """
         }
       }
