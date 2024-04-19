@@ -18,10 +18,9 @@ pipeline {
           } else {
               println "This build was not having by a git tag"
           }
+          sh(returnStdout: true, script: "git tag --contains").trim()
 
-          sh """
-            sh(returnStdout: true, script: "git tag --contains").trim()
-          """
+
 
         
         }
