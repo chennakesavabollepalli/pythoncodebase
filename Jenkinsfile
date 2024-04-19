@@ -4,6 +4,11 @@ pipeline {
     GIT_TAG = "${env.TAG_NAME}"
   }
   stages { 
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
     stage('POC') {
       steps {
         script {
