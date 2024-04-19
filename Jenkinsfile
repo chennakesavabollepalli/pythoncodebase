@@ -1,25 +1,26 @@
 pipeline {
   agent any 
   environment { 
-  DOCKER_IMAGE = 'chenna/pythoncodebase:01'
-  DOCKER_CREDENTIALS = 'docker-hub-credentials'
+    GIT_TAG = ${env.TAG_NAME}
   }
   stages { 
     stage {
       steps {
         script {
-          docker.build(env.DOCKER_IMAGE)
+          sh """
+             echo $GIT_TAG
+          """
         }
       }
     }
-    stage {
-      steps { 
-        script { 
-          docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_REGISTRY_CREDENTIALS) 
-          docker.image(env.DOCKER_IMAGE).push('latest')    
-        }
-      }
-    }
+    // stage {
+    //   steps { 
+    //     script { 
+    //       docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_REGISTRY_CREDENTIALS) 
+    //       docker.image(env.DOCKER_IMAGE).push('latest')    
+    //     }
+    //   }
+    // }
   }
   post { 
     success {
