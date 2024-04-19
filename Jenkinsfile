@@ -7,9 +7,14 @@ pipeline {
     stage('POC') {
       steps {
         script {
-          sh """
-            echo "${GIT_TAG}"
-          """
+          def tagName = env.TAG_NAME
+          if (tagName) {
+              println "Prent Git tag: ${tagName}"
+          } else {
+              println "This build was not having by a git tag"
+          }
+
+        
         }
       }
     }
