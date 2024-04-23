@@ -24,11 +24,23 @@ pipeline {
           } else {
               println "This build was not having by a git tag"
           }
-          sh(returnStdout: true, script: "git tag --contains").trim()
+          
 
 
 
         
+        }
+      }
+    }
+    stage ('poc new') {
+      steps {
+        script {
+           def Git_Tag = sh(script: 'git describe --tags --abbrev=0', returnStdout: true).trim()
+           if (Git_Tag) {
+              println "Prent Git tag:" ${Git_Tag}
+           } else {
+              println "This build was not having by a git tag"
+           }
         }
       }
     }
