@@ -1,14 +1,15 @@
 pipeline {
   agent any 
   environment { 
-    GIT_TAG = "${env.TAG_NAME}"
+    // GIT_TAG = "${env.TAG_NAME}"
+    git_branch = env.BRANCH_NAME
   }
   stages { 
     stage('Checkout') {
       steps {
         checkout scm: [
           $class: 'GitSCM',
-          branches: [[name: "refs/heads/poc"]],
+          branches: [[name: "refs/heads/${git_branch}"]],
           userRemoteConfigs: [[url: 'https://github.com/chennakesavabollepalli/pythoncodebase.git']]
         ]
 
