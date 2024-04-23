@@ -6,7 +6,13 @@ pipeline {
   stages { 
     stage('Checkout') {
       steps {
-        checkout scm
+        checkout scm: [
+          $class: 'GitSCM',
+          branches: [[name: "refs/heads/poc"]],
+          userRemoteConfigs: [[url: 'https://github.com/chennakesavabollepalli/pythoncodebase.git']]
+        ]
+
+        
       }
     }
     stage('POC') {
