@@ -38,7 +38,7 @@ pipeline {
            def Git_Tag = sh(script: 'git describe --tags --abbrev=0', returnStdout: true).trim()
            echo "git tag is ${Git_Tag}"
            if (Git_Tag) {
-              println "Prent Git tag:" ${Git_Tag}
+              println "Prent Git tag: ${Git_Tag}"
            } else {
               println "This build was not having by a git tag"
            }
